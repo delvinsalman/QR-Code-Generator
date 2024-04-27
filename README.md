@@ -1,1 +1,1 @@
-# QR-Code-Generator
+# [QR-Code-Generator](https://delvinsalman.github.io/QR-Code-Generator/)
