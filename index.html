@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon"> <!-- Add this line for the favicon -->
+</head>
+<body>
+
+<div class="container">
+    
+  <p>Enter a URL or Text</p>
+  <input type="text" placeholder="Text or Url" id="qrText">
+  <div>
+    <label for="color">Choose QR Code Color:</label>
+    <input type="color" id="color" value="#ffffff"> <!-- Set default color to black -->
+  </div>
+  <div>
+    <label for="errorCorrection">Error Correction Level:</label>
+    <select id="errorCorrection">
+      <option value="L">Low (7%)</option>
+      <option value="M">Medium (15%)</option>
+      <option value="Q">Quartile (25%)</option>
+      <option value="H">High (30%)</option>
+    </select>
+  </div>
+  <div style="margin-top: 10px;"> <!-- Adjusted margin-top here -->
+    <label for="bgColor">Background Color:</label>
+    <input type="color" id="bgColor">
+  </div>
+  <div id="imgBox">
+    <img src="" id="qrImage">
+  </div>
+  <button onclick="generateQR()">Generate QR Code</button>
+  <div id="downloadLinkContainer"></div> <!-- Container for download link -->
+</div>
+
+<script>
+  let imgBox = document.getElementById("imgBox");
+  let qrImage = document.getElementById("qrImage");
+  let qrText = document.getElementById("qrText");
+  let colorInput = document.getElementById("color");
+  let errorCorrectionSelect = document.getElementById("errorCorrection");
+  let bgColorInput = document.getElementById("bgColor");
+
+  function generateQR() {
+    if (qrText.value.length > 0) {
+      let color = colorInput.value || "#000000"; // Default color is black if no color is chosen
+      let errorCorrection = errorCorrectionSelect.value;
+      let bgColor = bgColorInput.value || "#ffffff"; // Default background color is white if no color is chosen
+      
+      let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrText.value)}&color=${color.substr(1)}&bgcolor=${bgColor.substr(1)}&ecc=${errorCorrection}&format=png`;
+      
+      qrImage.src = apiUrl;
+      imgBox.classList.add("show-img");
+
+      // Create download link dynamically
+      let downloadLink = document.createElement('a');
+      downloadLink.href = apiUrl;
+      downloadLink.download = 'qr_code.png';
+      downloadLink.innerText = 'Download QR Code';
+      document.getElementById('downloadLinkContainer').innerHTML = '';
+      document.getElementById('downloadLinkContainer').appendChild(downloadLink);
+    } else {
+      qrText.classList.add('error');
+      setTimeout(() => {
+        qrText.classList.remove('error');
+      }, 1000);
+    }
+  }
+</script>
+
+</body>
+</html>
