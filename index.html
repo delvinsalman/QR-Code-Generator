@@ -5,6 +5,14 @@
   <title>QR Code Generator</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon"> <!-- Add this line for the favicon -->
+  <style>
+    /* Add CSS for the animation effect */
+    @keyframes qrAnimation {
+      0% { transform: scale(1); filter: hue-rotate(0deg); }
+      50% { transform: scale(1.1); filter: hue-rotate(180deg); }
+      100% { transform: scale(1); filter: hue-rotate(360deg); }
+    }
+  </style>
 </head>
 <body>
 
@@ -14,7 +22,7 @@
   <input type="text" placeholder="Text or Url" id="qrText">
   <div>
     <label for="color">Choose QR Code Color:</label>
-    <input type="color" id="color" value="#ffffff"> <!-- Set default color to black -->
+    <input type="color" id="color" value="#000000"> <!-- Set default color to black -->
   </div>
   <div>
     <label for="errorCorrection">Error Correction Level:</label>
@@ -27,7 +35,7 @@
   </div>
   <div style="margin-top: 10px;"> <!-- Adjusted margin-top here -->
     <label for="bgColor">Background Color:</label>
-    <input type="color" id="bgColor">
+    <input type="color" id="bgColor" value="#ffffff"> <!-- Set default background color to white -->
   </div>
   <div id="imgBox">
     <img src="" id="qrImage">
@@ -62,6 +70,12 @@
       downloadLink.innerText = 'Download QR Code';
       document.getElementById('downloadLinkContainer').innerHTML = '';
       document.getElementById('downloadLinkContainer').appendChild(downloadLink);
+
+      // Add animation effect when clicked
+      qrImage.style.animation = 'qrAnimation 1s ease-in-out';
+      setTimeout(() => {
+        qrImage.style.animation = '';
+      }, 1000);
     } else {
       qrText.classList.add('error');
       setTimeout(() => {
