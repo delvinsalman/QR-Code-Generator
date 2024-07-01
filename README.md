@@ -8,6 +8,6 @@ This project is a QR Code Generator, in which user can generate QR codes with so
 
 # Overview
 
-<img width="1273" alt="Screenshot 2024-07-01 at 9 56 16 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/b419f864-13ee-4bca-9780-a0e3705bc657">
+<img width="1273" alt="Screenshot 2024-07-01 at 9 57 22 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/065aa52a-e517-4ce6-a737-56adfe6e828e">
 
 <img width="1273" alt="Screenshot 2024-07-01 at 9 56 16 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/941f6f76-8f01-4e3a-b0c6-195ce1f35591">
