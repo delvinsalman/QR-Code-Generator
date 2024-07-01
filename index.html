@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QR Code Generator</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon"> <!-- Add this line for the favicon -->
+  <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon">
   <style>
     /* Add CSS for the animation effect */
     @keyframes qrAnimation {
@@ -12,36 +12,77 @@
       50% { transform: scale(1.1); filter: hue-rotate(180deg); }
       100% { transform: scale(1); filter: hue-rotate(360deg); }
     }
+
+    /* CSS for the success message */
+    .success-message {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #28a745;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .success-message.show {
+      opacity: 1;
+    }
+
+    /* CSS for the download link */
+    #downloadLinkContainer a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #fff; /* White background color */
+      color: #000; /* Black text color */
+      text-decoration: none;
+      border-radius: 5px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    #downloadLinkContainer a:hover {
+      background-color: #ddd; /* Slightly darker background on hover */
+      color: #000; /* Black text color on hover */
+    }
   </style>
 </head>
 <body>
 
 <div class="container">
-    
-  <p>Enter a URL or Text</p>
-  <input type="text" placeholder="Text or Url" id="qrText">
-  <div>
-    <label for="color">Choose QR Code Color:</label>
-    <input type="color" id="color" value="#000000"> <!-- Set default color to black -->
+  <div class="input-section">
+    <h1>QR Code Generator</h1>
+    <p>Enter a URL or Text</p>
+    <input type="text" placeholder="Text or Url" id="qrText">
+    <div>
+      <label for="color">Choose QR Code Color:</label>
+      <input type="color" id="color" value="#000000">
+    </div>
+    <div>
+      <label for="errorCorrection">Error Correction Level:</label>
+      <select id="errorCorrection">
+        <option value="L">Low (7%)</option>
+        <option value="M">Medium (15%)</option>
+        <option value="Q">Quartile (25%)</option>
+        <option value="H">High (30%)</option>
+      </select>
+    </div>
+    <div style="margin-top: 10px;">
+      <label for="bgColor">Background Color:</label>
+      <input type="color" id="bgColor" value="#ffffff">
+    </div>
+    <button onclick="generateQR()">Generate QR Code</button>
+    <div id="downloadLinkContainer"></div>
   </div>
-  <div>
-    <label for="errorCorrection">Error Correction Level:</label>
-    <select id="errorCorrection">
-      <option value="L">Low (7%)</option>
-      <option value="M">Medium (15%)</option>
-      <option value="Q">Quartile (25%)</option>
-      <option value="H">High (30%)</option>
-    </select>
+  <div class="qr-section">
+    <div id="imgBox">
+      <img src="" id="qrImage">
+    </div>
+    <div class="success-message" id="successMessage">You have successfully generated a QR code!</div>
   </div>
-  <div style="margin-top: 10px;"> <!-- Adjusted margin-top here -->
-    <label for="bgColor">Background Color:</label>
-    <input type="color" id="bgColor" value="#ffffff"> <!-- Set default background color to white -->
-  </div>
-  <div id="imgBox">
-    <img src="" id="qrImage">
-  </div>
-  <button onclick="generateQR()">Generate QR Code</button>
-  <div id="downloadLinkContainer"></div> <!-- Container for download link -->
 </div>
 
 <script>
@@ -51,12 +92,13 @@
   let colorInput = document.getElementById("color");
   let errorCorrectionSelect = document.getElementById("errorCorrection");
   let bgColorInput = document.getElementById("bgColor");
+  let successMessage = document.getElementById("successMessage");
 
   function generateQR() {
     if (qrText.value.length > 0) {
-      let color = colorInput.value || "#000000"; // Default color is black if no color is chosen
+      let color = colorInput.value || "#000000";
       let errorCorrection = errorCorrectionSelect.value;
-      let bgColor = bgColorInput.value || "#ffffff"; // Default background color is white if no color is chosen
+      let bgColor = bgColorInput.value || "#ffffff";
       
       let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrText.value)}&color=${color.substr(1)}&bgcolor=${bgColor.substr(1)}&ecc=${errorCorrection}&format=png`;
       
@@ -76,6 +118,12 @@
       setTimeout(() => {
         qrImage.style.animation = '';
       }, 1000);
+
+      // Show success message
+      successMessage.classList.add("show");
+      setTimeout(() => {
+        successMessage.classList.remove("show");
+      }, 3000); // Message disappears after 3 seconds
     } else {
       qrText.classList.add('error');
       setTimeout(() => {
