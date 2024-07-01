@@ -6,7 +6,7 @@ This project is a QR Code Generator, in which user can generate QR codes with so
 
 # [QR-Code-Generator](https://delvinsalman.github.io/QR-Code-Generator/)
 
-# Overview
+# Overview:
 
 <img width="1273" alt="Screenshot 2024-07-01 at 9 57 22 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/065aa52a-e517-4ce6-a737-56adfe6e828e">
 
