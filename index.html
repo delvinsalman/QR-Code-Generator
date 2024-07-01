@@ -6,14 +6,12 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon">
   <style>
-    /* Add CSS for the animation effect */
     @keyframes qrAnimation {
       0% { transform: scale(1); filter: hue-rotate(0deg); }
       50% { transform: scale(1.1); filter: hue-rotate(180deg); }
       100% { transform: scale(1); filter: hue-rotate(360deg); }
     }
 
-    /* CSS for the success message */
     .success-message {
       position: absolute;
       top: 20px;
@@ -31,13 +29,12 @@
       opacity: 1;
     }
 
-    /* CSS for the download link */
     #downloadLinkContainer a {
       display: inline-block;
       margin-top: 10px;
       padding: 10px 20px;
-      background-color: #fff; /* White background color */
-      color: #000; /* Black text color */
+      background-color: #fff; 
+      color: #000; 
       text-decoration: none;
       border-radius: 5px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -45,93 +42,88 @@
     }
 
     #downloadLinkContainer a:hover {
-      background-color: #ddd; /* Slightly darker background on hover */
-      color: #000; /* Black text color on hover */
+      background-color: #ddd; 
+      color: #000; 
     }
   </style>
 </head>
 <body>
-
-<div class="container">
-  <div class="input-section">
-    <h1>QR Code Generator</h1>
-    <p>Enter a URL or Text</p>
-    <input type="text" placeholder="Text or Url" id="qrText">
-    <div>
-      <label for="color">Choose QR Code Color:</label>
-      <input type="color" id="color" value="#000000">
+  <div class="container">
+    <div class="input-section">
+      <h1>QR Code Generator</h1>
+      <p>Enter a URL or Text</p>
+      <input type="text" placeholder="Text or Url" id="qrText">
+      <div>
+        <label for="color">Choose QR Code Color:</label>
+        <input type="color" id="color" value="#000000">
+      </div>
+      <div>
+        <label for="errorCorrection">Error Correction Level:</label>
+        <select id="errorCorrection">
+          <option value="L">Low (7%)</option>
+          <option value="M">Medium (15%)</option>
+          <option value="Q">Quartile (25%)</option>
+          <option value="H">High (30%)</option>
+        </select>
+      </div>
+      <div style="margin-top: 10px;">
+        <label for="bgColor">Background Color:</label>
+        <input type="color" id="bgColor" value="#ffffff">
+      </div>
+      <button onclick="generateQR()">Generate QR Code</button>
+      <div id="downloadLinkContainer"></div>
     </div>
-    <div>
-      <label for="errorCorrection">Error Correction Level:</label>
-      <select id="errorCorrection">
-        <option value="L">Low (7%)</option>
-        <option value="M">Medium (15%)</option>
-        <option value="Q">Quartile (25%)</option>
-        <option value="H">High (30%)</option>
-      </select>
+    <div class="qr-section">
+      <div id="imgBox">
+        <img src="" id="qrImage">
+      </div>
+      <div class="success-message" id="successMessage">You have successfully generated a QR code!</div>
     </div>
-    <div style="margin-top: 10px;">
-      <label for="bgColor">Background Color:</label>
-      <input type="color" id="bgColor" value="#ffffff">
-    </div>
-    <button onclick="generateQR()">Generate QR Code</button>
-    <div id="downloadLinkContainer"></div>
   </div>
-  <div class="qr-section">
-    <div id="imgBox">
-      <img src="" id="qrImage">
-    </div>
-    <div class="success-message" id="successMessage">You have successfully generated a QR code!</div>
-  </div>
-</div>
 
-<script>
-  let imgBox = document.getElementById("imgBox");
-  let qrImage = document.getElementById("qrImage");
-  let qrText = document.getElementById("qrText");
-  let colorInput = document.getElementById("color");
-  let errorCorrectionSelect = document.getElementById("errorCorrection");
-  let bgColorInput = document.getElementById("bgColor");
-  let successMessage = document.getElementById("successMessage");
+  <script>
+    let imgBox = document.getElementById("imgBox");
+    let qrImage = document.getElementById("qrImage");
+    let qrText = document.getElementById("qrText");
+    let colorInput = document.getElementById("color");
+    let errorCorrectionSelect = document.getElementById("errorCorrection");
+    let bgColorInput = document.getElementById("bgColor");
+    let successMessage = document.getElementById("successMessage");
 
-  function generateQR() {
-    if (qrText.value.length > 0) {
-      let color = colorInput.value || "#000000";
-      let errorCorrection = errorCorrectionSelect.value;
-      let bgColor = bgColorInput.value || "#ffffff";
-      
-      let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrText.value)}&color=${color.substr(1)}&bgcolor=${bgColor.substr(1)}&ecc=${errorCorrection}&format=png`;
-      
-      qrImage.src = apiUrl;
-      imgBox.classList.add("show-img");
+    function generateQR() {
+      if (qrText.value.length > 0) {
+        let color = colorInput.value || "#000000";
+        let errorCorrection = errorCorrectionSelect.value;
+        let bgColor = bgColorInput.value || "#ffffff";
 
-      // Create download link dynamically
-      let downloadLink = document.createElement('a');
-      downloadLink.href = apiUrl;
-      downloadLink.download = 'qr_code.png';
-      downloadLink.innerText = 'Download QR Code';
-      document.getElementById('downloadLinkContainer').innerHTML = '';
-      document.getElementById('downloadLinkContainer').appendChild(downloadLink);
+        let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrText.value)}&color=${color.substr(1)}&bgcolor=${bgColor.substr(1)}&ecc=${errorCorrection}&format=png`;
 
-      // Add animation effect when clicked
-      qrImage.style.animation = 'qrAnimation 1s ease-in-out';
-      setTimeout(() => {
-        qrImage.style.animation = '';
-      }, 1000);
+        qrImage.src = apiUrl;
+        imgBox.classList.add("show-img");
 
-      // Show success message
-      successMessage.classList.add("show");
-      setTimeout(() => {
-        successMessage.classList.remove("show");
-      }, 3000); // Message disappears after 3 seconds
-    } else {
-      qrText.classList.add('error');
-      setTimeout(() => {
-        qrText.classList.remove('error');
-      }, 1000);
+        let downloadLink = document.createElement('a');
+        downloadLink.href = apiUrl;
+        downloadLink.download = 'qr_code.png';
+        downloadLink.innerText = 'Download QR Code';
+        document.getElementById('downloadLinkContainer').innerHTML = '';
+        document.getElementById('downloadLinkContainer').appendChild(downloadLink);
+
+        qrImage.style.animation = 'qrAnimation 1s ease-in-out';
+        setTimeout(() => {
+          qrImage.style.animation = '';
+        }, 1000);
+
+        successMessage.classList.add("show");
+        setTimeout(() => {
+          successMessage.classList.remove("show");
+        }, 3000);
+      } else {
+        qrText.classList.add('error');
+        setTimeout(() => {
+          qrText.classList.remove('error');
+        }, 1000);
+      }
     }
-  }
-</script>
-
+  </script>
 </body>
 </html>
