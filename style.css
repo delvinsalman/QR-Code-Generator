@@ -33,7 +33,7 @@ body {
 
 .input-section {
   border-right: 1px solid #ccc;
-  background-image: url('Colour.png');
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG2HaYvfeZI4C7CCG3sGoLRdL1tSfUC-dPA&s');
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -44,7 +44,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url('Colour.png');
+  background-image: url('https://images8.alphacoders.com/107/1079058.jpg');
   background-size: cover;
   background-position: center;
 }
