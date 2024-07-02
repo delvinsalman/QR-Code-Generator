@@ -10,8 +10,6 @@ This project was developed using HTML, CSS, and JavaScript. It utilizes various 
 
 # Overview:
 
-<img width="1273" alt="Screenshot 2024-07-01 at 9 57 22 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/065aa52a-e517-4ce6-a737-56adfe6e828e">
-
-<img width="1273" alt="Screenshot 2024-07-01 at 9 56 16 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/941f6f76-8f01-4e3a-b0c6-195ce1f35591">
-
-<img width="1273" alt="Screenshot 2024-07-01 at 9 59 07 AM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/1edf5b75-1146-4996-bf8c-82c055e7eb50">
+<img width="1268" alt="Screenshot 2024-07-02 at 3 18 04 PM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/590506ea-c867-4849-9578-d40dca8910b3">
+<img width="1268" alt="Screenshot 2024-07-02 at 3 18 31 PM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/36b79604-19d8-4fa9-abed-288fff873ced">
+<img width="1268" alt="Screenshot 2024-07-02 at 3 20 02 PM" src="https://github.com/delvinsalman/QR-Code-Generator/assets/90351386/63dc3447-a51a-4585-8ec7-7439e757433f">
