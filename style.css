@@ -33,7 +33,7 @@ body {
 
 .input-section {
   border-right: 1px solid #ccc;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG2HaYvfeZI4C7CCG3sGoLRdL1tSfUC-dPA&s');
+  background-image: url('https://cdn.vectorstock.com/i/500p/95/44/pink-and-dark-blue-cyberpunk-abstract-background-vector-54389544.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -44,7 +44,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background-image: url('https://images8.alphacoders.com/107/1079058.jpg');
+  background-image: url('https://raw.githubusercontent.com/basnijholt/lovelace-ios-dark-mode-theme/master/backgrounds/homekit-bg-4.jpeg');
   background-size: cover;
   background-position: center;
 }
@@ -119,4 +119,12 @@ body {
   50% { transform: translateX(0); }
   75% { transform: translateX(2px); }
   100% { transform: translateX(0); }
+}
+.input-section input[type="color"] {
+  background: transparent;  /* Remove the background */
+  border: none;             /* Remove the border */
+  width: 545px;              /* Adjust width for the color swatch */
+  height: 40px;             /* Adjust height for the color swatch */
+  padding: 0;               /* Remove padding */
+  cursor: pointer;         /* Show pointer when hovering over the input */
 }
