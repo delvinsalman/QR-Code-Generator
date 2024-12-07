@@ -7,7 +7,8 @@ This project is a QR Code Generator, in which user can generate QR codes with so
 
 This project was developed using HTML, CSS, and JavaScript. It utilizes various JavaScript libraries for the QR generation aspect of the QR code, along with other features.
 
-## Project Link Display: [QR-Code-Generator](https://delvinsalman.github.io/QR-Code-Generator/)
+## Project Link Display:
+Try it for yourself, https://delvinsalman.github.io/QR-Code-Generator/. 
 
 ## Display
 A image display of how the system works. 
