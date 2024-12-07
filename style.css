@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  border: 5px solid #fff;
+}
+
+.input-section, .qr-section {
+  padding: 40px 35px;
+  width: 50%;
+  overflow-y: auto;
+}
+
+.input-section {
+  border-right: 1px solid #ccc;
+  background-image: url('https://cdn.vectorstock.com/i/500p/95/44/pink-and-dark-blue-cyberpunk-abstract-background-vector-54389544.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.qr-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url('https://raw.githubusercontent.com/basnijholt/lovelace-ios-dark-mode-theme/master/backgrounds/homekit-bg-4.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+#imgBox {
+  width: 300px;
+  border-radius: 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s;
+}
+
+#imgBox img {
+  width: 100%;
+  padding: 10px;
+}
+
+#imgBox.show-img {
+  max-height: 300px;
+  margin: 10px auto;
+  border: 2px solid #000000;
+}
+
+.input-section h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input-section p {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.input-section input, .input-section select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  outline: none;
+  padding: 8px;
+  margin: 10px 0 15px;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.input-section button {
+  width: 100%;
+  height: 40px;
+  background: #494eea;
+  color: #fff;
+  border: 0;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 15px 0;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.input-section button:hover {
+  background: #3c36a5;
+}
+
+.error {
+  animation: shake 0.1s linear 10;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+.input-section input[type="color"] {
+  background: transparent;  /* Remove the background */
+  border: none;             /* Remove the border */
+  width: 545px;              /* Adjust width for the color swatch */
+  height: 40px;             /* Adjust height for the color swatch */
+  padding: 0;               /* Remove padding */
+  cursor: pointer;         /* Show pointer when hovering over the input */
+}
