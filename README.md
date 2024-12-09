@@ -1,4 +1,4 @@
-# **QR Code Generator** 📱![E1D8_color](https://github.com/user-attachments/assets/22812207-b1e8-4def-8810-f0284cb0e58a)
+# **QR Code Generator** 📱![E1D8_color](https://github.com/user-attachments/assets/22812207-b1e8-4def-8810-f0284cb0e58a =20x20)
 
 
 ## **Overview**  
