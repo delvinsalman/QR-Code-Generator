@@ -1,4 +1,4 @@
-# **QR Code Generator** 📱 <img src="https://github.com/user-attachments/assets/22812207-b1e8-4def-8810-f0284cb0e58a" width="40" height="40" style="padding-bottom: -10px;">
+# **QR Code Generator** 📱 <img src="https://github.com/user-attachments/assets/22812207-b1e8-4def-8810-f0284cb0e58a" width="40" height="20" style="padding-bottom: -10px;">
 
 
 
