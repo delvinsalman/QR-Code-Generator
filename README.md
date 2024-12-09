@@ -1,4 +1,5 @@
-# **QR Code Generator** 📱🔳
+# **QR Code Generator** 📱![E1D8_color](https://github.com/user-attachments/assets/22812207-b1e8-4def-8810-f0284cb0e58a)
+
 
 ## **Overview**  
 This project is a **QR Code Generator**, where users can create QR codes with customizable features. The user can type or copy and paste a link into the search bar to generate a QR code. Additionally, users have the option to change the **color** of the QR code, adjust the **lines** within the QR code, and modify the **error correction level**, allowing the QR code to be tailored to their preferences.
