@@ -1,282 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>QR Code Generator</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="src/Ln0Ar.jpg" type="image/x-icon">
-  <style>
-    /* Global reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* Body styling */
-    body {
-      background-color: #000000;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    /* Container for both sections */
-    .container {
-      display: flex;
-      width: 80vw;
-      height: 80vh;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.5);
-      overflow: hidden;
-      border: 1px solid #ffffff; /* White border */
-    }
-
-    /* Styling for the input section */
-    .input-section {
-      padding: 30px;
-      width: 50%;
-      background-color: #282c34;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    /* Title and labels */
-    .input-section h1 {
-      font-size: 36px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    /* Title separation line */
-    .input-section h1::after {
-      content: "";
-      display: block;
-      height: 2px;
-      background-color: #fff;
-      margin-top: 16px;
-    }
-
-    .input-section p {
-      font-weight: 500;
-      font-size: 18px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    /* Input fields styling */
-    .input-section input,
-    .input-section select,
-    .input-section button {
-      width: 100%;
-      height: 40px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      border: none;
-      padding: 0 12px;
-    }
-
-    .input-section input {
-      background-color: #2f353b;
-      color: #f4f4f4;
-      font-size: 16px;
-    }
-
-    .input-section select {
-      background-color: #2f353b;
-      color: #f4f4f4;
-      font-size: 16px;
-    }
-
-    .input-section button {
-      background-color: #5a7aff;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .input-section button:hover {
-      background-color: #4d6ec5;
-    }
-
-    .input-section input:focus,
-    .input-section select:focus,
-    .input-section button:focus {
-      outline: none;
-    }
-
-    /* QR code image section */
-    .qr-section {
-      padding: 40px;
-      width: 50%;
-      background-color: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* Title for QR section */
-    .qr-section h2 {
-      font-size: 36px;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-
-    /* Title separation line for QR section */
-    .qr-section h2::after {
-      content: "";
-      display: block;
-      height: 2px;
-      background-color: #000;
-      margin-top: 16px;
-    }
-
-    #imgBox {
-      width: 250px;
-      height: 250px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-    }
-
-    #qrImage {
-      width: 100%;
-      max-height: 100%;
-      display: none;
-    }
-
-    #imgBox.show-img #qrImage {
-      display: block;
-    }
-
-    /* Success message animation */
-    .success-message {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #28a745;
-      color: #fff;
-      padding: 8px 16px;
-      border-radius: 4px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    .success-message.show {
-      opacity: 1;
-    }
-
-    /* Link button styling */
-    #downloadLinkContainer a {
-      padding: 10px 20px;
-      background-color: #5a7aff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      font-size: 16px;
-      margin-top: 10px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.3s ease;
-    }
-
-    #downloadLinkContainer a:hover {
-      background-color: #4d6ec5;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="input-section">
-      <h1>QR Code Generator</h1>
-      <p>Enter URL or Text to generate a QR Code</p>
-      <input type="text" placeholder="Text or URL" id="qrText">
-      
-      <div>
-        <label for="color">Choose QR Code Color:</label>
-        <input type="color" id="color" value="#000000">
-      </div>
+    <div class="container">
+        <div class="panel input-panel">
+            <div class="header">
+                <h1>Advanced QR Code Generator</h1>
+                <p>Create customized QR codes for URLs, text, contacts, and more</p>
+            </div>
 
-      <div>
-        <label for="errorCorrection">Error Correction Level:</label>
-        <select id="errorCorrection">
-          <option value="L">Low (7%)</option>
-          <option value="M">Medium (15%)</option>
-          <option value="Q">Quartile (25%)</option>
-          <option value="H">High (30%)</option>
-        </select>
-      </div>
+            <div class="tabs">
+                <div class="tab active" data-tab="url">URL</div>
+                <div class="tab" data-tab="text">Text</div>
+                <div class="tab" data-tab="contact">Contact</div>
+                <div class="tab" data-tab="wifi">Wi-Fi</div>
+            </div>
 
-      <div>
-        <label for="bgColor">Background Color:</label>
-        <input type="color" id="bgColor" value="#ffffff">
-      </div>
+            <div class="tab-content active" id="url-tab">
+                <div class="form-group">
+                    <label for="url-input">Website URL</label>
+                    <input type="url" id="url-input" class="form-control" placeholder="https://example.com">
+                </div>
+            </div>
 
-      <button onclick="generateQR()">Generate QR Code</button>
-      <div id="downloadLinkContainer"></div>
+            <div class="tab-content" id="text-tab">
+                <div class="form-group">
+                    <label for="text-input">Text Content</label>
+                    <textarea id="text-input" class="form-control" rows="4" placeholder="Enter your text here..."></textarea>
+                </div>
+            </div>
+
+            <div class="tab-content" id="contact-tab">
+                <div class="form-group">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" class="form-control" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Phone</label>
+                    <input type="tel" id="contact-phone" class="form-control" placeholder="+1234567890">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" class="form-control" placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="contact-company">Company</label>
+                    <input type="text" id="contact-company" class="form-control" placeholder="Company Name">
+                </div>
+            </div>
+
+            <div class="tab-content" id="wifi-tab">
+                <div class="form-group">
+                    <label for="wifi-ssid">Network Name (SSID)</label>
+                    <input type="text" id="wifi-ssid" class="form-control" placeholder="MyWiFiNetwork">
+                </div>
+                <div class="form-group">
+                    <label for="wifi-password">Password</label>
+                    <input type="password" id="wifi-password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="wifi-security">Security Type</label>
+                    <select id="wifi-security" class="form-control">
+                        <option value="WPA">WPA/WPA2</option>
+                        <option value="WEP">WEP</option>
+                        <option value="">None</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="advanced-options">
+                <div class="advanced-options-header">
+                    <span class="advanced-options-title">
+                        <i class="fas fa-cog btn-icon"></i> Advanced Options
+                    </span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="advanced-options-content">
+                    <div class="form-group">
+                        <label for="qr-size">QR Code Size</label>
+                        <div class="slider-container">
+                            <div class="slider-label">
+                                <span>Small</span>
+                                <span>Large</span>
+                            </div>
+                            <input type="range" min="100" max="500" value="300" class="slider" id="qr-size">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>QR Code Colors</label>
+                        <div class="color-picker-container">
+                            <input type="color" id="qr-fg-color" class="color-picker" value="#000000">
+                            <input type="color" id="qr-bg-color" class="color-picker" value="#ffffff">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Error Correction</label>
+                        <select id="error-correction" class="form-control">
+                            <option value="L">Low (7%)</option>
+                            <option value="M" selected>Medium (15%)</option>
+                            <option value="Q">Quartile (25%)</option>
+                            <option value="H">High (30%)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Add Logo</label>
+                        <div class="logo-upload">
+                            <div class="logo-preview">
+                                <i class="fas fa-image"></i>
+                                <div class="logo-remove-btn">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                            <button type="button" class="logo-upload-btn">
+                                <i class="fas fa-upload btn-icon"></i> Upload Logo
+                            </button>
+                            <input type="file" id="logo-upload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary btn-block">
+                <i class="fas fa-qrcode btn-icon"></i> Generate QR Code
+            </button>
+        </div>
+
+        <div class="panel output-panel">
+            <div class="header">
+                <h1>Your QR Code</h1>
+                <p>Scan or download your customized QR code</p>
+            </div>
+
+            <div id="qr-placeholder" class="qr-placeholder">
+                <i class="fas fa-qrcode"></i>
+                <p>Enter your content and click "Generate QR Code" to create your custom QR code</p>
+            </div>
+
+            <div id="qr-container" class="qr-container" style="display: none;">
+                <canvas id="qr-code"></canvas>
+                <div class="download-options">
+                    <button class="download-btn" data-format="png">
+                        <i class="fas fa-download"></i> PNG
+                    </button>
+                    <button class="download-btn" data-format="jpeg">
+                        <i class="fas fa-download"></i> JPEG
+                    </button>
+                    <button class="download-btn" data-format="svg">
+                        <i class="fas fa-download"></i> SVG
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="qr-section">
-      <h2>QR Code Preview</h2>
-      <div id="imgBox">
-        <img src="" id="qrImage">
-      </div>
-      <div class="success-message" id="successMessage">QR Code Generated Successfully!</div>
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">QR Code generated successfully!</span>
     </div>
-  </div>
 
-  <script>
-    let imgBox = document.getElementById("imgBox");
-    let qrImage = document.getElementById("qrImage");
-    let qrText = document.getElementById("qrText");
-    let colorInput = document.getElementById("color");
-    let errorCorrectionSelect = document.getElementById("errorCorrection");
-    let bgColorInput = document.getElementById("bgColor");
-    let successMessage = document.getElementById("successMessage");
-
-    function generateQR() {
-      if (qrText.value.length > 0) {
-        let color = colorInput.value || "#000000";
-        let errorCorrection = errorCorrectionSelect.value;
-        let bgColor = bgColorInput.value || "#ffffff";
-
-        let apiUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrText.value)}&color=${color.substr(1)}&bgcolor=${bgColor.substr(1)}&ecc=${errorCorrection}&format=png`;
-
-        qrImage.src = apiUrl;
-        imgBox.classList.add("show-img");
-
-        let downloadLink = document.createElement('a');
-        downloadLink.href = apiUrl;
-        downloadLink.download = 'qr_code.png';
-        downloadLink.innerText = 'Download QR Code';
-        document.getElementById('downloadLinkContainer').innerHTML = '';
-        document.getElementById('downloadLinkContainer').appendChild(downloadLink);
-
-        successMessage.classList.add("show");
-        setTimeout(() => {
-          successMessage.classList.remove("show");
-        }, 3000);
-      } else {
-        qrText.classList.add('error');
-        setTimeout(() => {
-          qrText.classList.remove('error');
-        }, 1000);
-      }
-    }
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
